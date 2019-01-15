@@ -5,8 +5,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.luckydeer.spider.common.view.response.ResponseObj;
 import cn.luckydeer.spider.manager.wechat.WechatManager;
 
+/**
+ * 微信机器人控制
+ * 
+ * @author yuanxx
+ * @version $Id: ChatRobController.java, v 0.1 2019年1月15日 下午2:35:41 yuanxx Exp $
+ */
 @RestController
 @RequestMapping(value = "/chatRob", method = RequestMethod.POST)
 public class ChatRobController {
@@ -21,17 +28,9 @@ public class ChatRobController {
      * @author yuanxx @date 2019年1月15日
      */
     @RequestMapping(value = "/start.do")
-    public String start() {
-        wechatManager.initRobot();
-        Thread myThread = new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                wechatManager.startRob();
-            }
-        });
-        myThread.start();
-        return "true";
+    public ResponseObj start() {
+        boolean flag = wechatManager.initRobot();
+        return new ResponseObj(flag);
     }
 
     /**
@@ -41,8 +40,8 @@ public class ChatRobController {
      * @author yuanxx @date 2019年1月15日
      */
     @RequestMapping(value = "/getCode.do")
-    public String getCode() {
-        return wechatManager.codeUrl();
+    public ResponseObj getCode() {
+        return new ResponseObj(wechatManager.codeUrl());
     }
 
     /**
@@ -52,8 +51,9 @@ public class ChatRobController {
      * @author yuanxx @date 2019年1月14日
      */
     @RequestMapping(value = "/loginOut.do")
-    public boolean loginOut() {
-        return wechatManager.loginOut();
+    public ResponseObj loginOut() {
+        boolean flag = wechatManager.loginOut();
+        return new ResponseObj(flag);
     }
 
     /**
@@ -63,8 +63,8 @@ public class ChatRobController {
      * @author yuanxx @date 2019年1月15日
      */
     @RequestMapping(value = "/isRunning.do")
-    public boolean isRunning() {
-        return wechatManager.isRunning();
+    public ResponseObj isRunning() {
+        return new ResponseObj(wechatManager.isRunning());
     }
 
 }

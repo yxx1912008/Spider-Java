@@ -160,8 +160,14 @@
 		<finalName>Spider</finalName>
 
 		<plugins>
-			<!-- <plugin> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-maven-plugin</artifactId> 
-				热重启 <configuration> <fork>true</fork> </configuration> </plugin> -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<!-- 热重启 -->
+				<configuration>
+					<fork>true</fork>
+				</configuration>
+			</plugin>
 
 			<!-- maven打包war工具 -->
 			<plugin>
