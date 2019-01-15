@@ -59,4 +59,8 @@ public class WechatManager {
         return true;
     }
 
+    public boolean isRunning() {
+        return robot.isRunning();
+    }
+
 }
