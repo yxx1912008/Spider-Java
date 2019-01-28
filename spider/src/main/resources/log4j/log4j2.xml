@@ -29,7 +29,7 @@
 			</PatternLayout>
 		</Console>
 
-		<!-- [Memcached缓存] 默认 -->
+		<!-- [Memcached缓存] -->
 		<RollingFile name="MEMCACHED-APPENDER" fileName="${filepath}/memcached.log"
 			filePattern="${filepath}/memcached.log.%d{yy-MM-dd}">
 			<!-- 日志格式 -->
@@ -41,21 +41,32 @@
 				<SizeBasedTriggeringPolicy size="10 MB" />
 			</Policies>
 		</RollingFile>
-		<Console name="MEMCACHED-CONSOLE" target="SYSTEM_OUT">
+
+		<!-- [普通Manager日志] 默认 -->
+		<RollingFile name="MEMCACHED-APPENDER" fileName="${filepath}/manager.log"
+			filePattern="${filepath}/manager.log.%d{yy-MM-dd}">
+			<!-- 日志格式 -->
 			<PatternLayout>
-				<Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%t] -
-					%msg%n</Pattern>
+				<Pattern>%d %-5p (%c:%L)- %m%n</Pattern>
 			</PatternLayout>
-		</Console>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
 	</Appenders>
 	<Loggers>
 		<!--过滤掉spring和mybatis的一些无用的DEBUG信息 -->
-		<logger name="org.springframework" level="INFO"></logger>
-		<logger name="org.apache.tomcat" level="INFO"></logger>
-		<logger name="org.mybatis" level="INFO"></logger>
+		<logger name="org.springframework" level="INFO" />
+		<logger name="org.apache.tomcat" level="INFO" />
+		<logger name="org.mybatis" level="INFO" />
+		<!-- memcached缓存日志 -->
 		<logger name="MEMCACHED-LOG" level="INFO">
 			<AppenderRef ref="MEMCACHED-APPENDER" />
-			<AppenderRef ref="MEMCACHED-CONSOLE" />
+		</logger>
+		<!-- 普通Manager日志 -->
+		<logger name="MANAGER-LOG" level="INFO">
+			<AppenderRef ref="MEMCACHED-APPENDER" />
 		</logger>
 		<Root level="INFO">
 			<AppenderRef ref="DEFAULT-APPENDER" />
