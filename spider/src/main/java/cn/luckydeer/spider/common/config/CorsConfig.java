@@ -23,7 +23,7 @@ public class CorsConfig implements WebMvcConfigurer {
         registry
             .addMapping("/**")
             .allowedOrigins("http://qufubackstage.qufx.mobi", "http://pc.qufx.mobi",
-                "192.168.18.227", "http://192.168.18.227")
+                "127.0.0.1", "http://192.168.18.227")
             .maxAge(259200)
             .allowCredentials(true)
             .allowedHeaders("Origin", "accept", "X-Requested-With", "Content-Type", "Set-Cookie",
