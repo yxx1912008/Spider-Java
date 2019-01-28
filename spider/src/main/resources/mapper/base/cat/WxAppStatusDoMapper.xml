@@ -14,45 +14,4 @@
     from wx_app_status
     where version_id = #{versionId,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
-    delete from wx_app_status
-    where version_id = #{versionId,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="cn.luckydeer.spider.dao.cat.daoObject.WxAppStatusDo" >
-    insert into wx_app_status (version_id, status)
-    values (#{versionId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="cn.luckydeer.spider.dao.cat.daoObject.WxAppStatusDo" >
-    insert into wx_app_status
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="versionId != null" >
-        version_id,
-      </if>
-      <if test="status != null" >
-        status,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="versionId != null" >
-        #{versionId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="cn.luckydeer.spider.dao.cat.daoObject.WxAppStatusDo" >
-    update wx_app_status
-    <set >
-      <if test="status != null" >
-        status = #{status,jdbcType=INTEGER},
-      </if>
-    </set>
-    where version_id = #{versionId,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="cn.luckydeer.spider.dao.cat.daoObject.WxAppStatusDo" >
-    update wx_app_status
-    set status = #{status,jdbcType=INTEGER}
-    where version_id = #{versionId,jdbcType=VARCHAR}
-  </update>
 </mapper>

@@ -13,15 +13,5 @@ import cn.luckydeer.spider.dao.cat.daoObject.WxAppStatusDo;
 @Service
 public interface WxAppStatusDao {
 
-    int deleteByPrimaryKey(String versionId);
-
-    int insert(WxAppStatusDo record);
-
-    int insertSelective(WxAppStatusDo record);
-
     WxAppStatusDo selectByPrimaryKey(String versionId);
-
-    int updateByPrimaryKeySelective(WxAppStatusDo record);
-
-    int updateByPrimaryKey(WxAppStatusDo record);
 }
