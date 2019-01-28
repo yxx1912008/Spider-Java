@@ -154,6 +154,15 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<!-- Memcached 缓存依赖 -->
+		<dependency>
+			<groupId>net.spy</groupId>
+			<artifactId>spymemcached</artifactId>
+			<version>2.9.0</version>
+		</dependency>
+
+
 	</dependencies>
 
 	<build>
