@@ -1,5 +1,6 @@
 package cn.luckydeer.spider.common.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,6 +15,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class CorsConfig implements WebMvcConfigurer {
 
+    @Value(value = "${server.domain}")
+    private String domain;
+
     /**
      * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurer#addCorsMappings(org.springframework.web.servlet.config.annotation.CorsRegistry)
      */
@@ -22,8 +26,8 @@ public class CorsConfig implements WebMvcConfigurer {
 
         registry
             .addMapping("/**")
-            .allowedOrigins("http://qufubackstage.qufx.mobi", "http://pc.qufx.mobi",
-                "127.0.0.1", "http://192.168.18.227")
+            .allowedOrigins("http://qufubackstage.qufx.mobi", "http://pc.qufx.mobi", "127.0.0.1",
+                domain)
             .maxAge(259200)
             .allowCredentials(true)
             .allowedHeaders("Origin", "accept", "X-Requested-With", "Content-Type", "Set-Cookie",
