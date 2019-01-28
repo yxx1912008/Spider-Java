@@ -24,7 +24,7 @@ import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
  * @version $Id: BaseDataSourceConfig.java, v 0.1 2019年1月26日 下午2:52:43 yuanxx Exp $
  */
 @Configuration
-@MapperScan(basePackages = "cn.luckydeer.spider.dao.cat", sqlSessionTemplateRef = "baseSqlSessionTemplate")
+@MapperScan(basePackages = {"cn.luckydeer.spider.dao.cat","cn.luckydeer.spider.dao.home"}, sqlSessionTemplateRef = "baseSqlSessionTemplate")
 public class BaseDataSourceConfig {
 
     @Value("${mybatis.base.mapper-locations}")
