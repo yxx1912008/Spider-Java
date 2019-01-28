@@ -2,6 +2,7 @@ package cn.luckydeer.spider.common.handler;
 
 import java.util.List;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.BindException;
@@ -55,7 +56,8 @@ public class BindExceptionHanlder {
      */
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseObj handleNoLoginException(NoHandlerFoundException ex) {
-        logger.info("请求接口未找到:", ex.getMessage());
+        logger.info("请求接口未找到，请求路径：{},请求方式：{}", ex.getRequestURL(), ex.getHttpMethod());
+        System.out.println(ToStringBuilder.reflectionToString(ex));
         return new ResponseObj(ViewShowEnums.ERROR_FAILED.getStatus(), "接口未找到");
     }
 
