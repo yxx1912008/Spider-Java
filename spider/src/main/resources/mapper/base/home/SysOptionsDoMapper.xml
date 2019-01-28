@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.luckydeer.spider.dao.home.daoInterface.SysOptionsDao" >
+  <resultMap id="BaseResultMap" type="cn.luckydeer.spider.dao.home.daoObject.SysOptionsDo" >
+    <id column="option_id" property="optionId" jdbcType="INTEGER" />
+    <result column="option_name" property="optionName" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="cn.luckydeer.spider.dao.home.daoObject.SysOptionsDo" extends="BaseResultMap" >
+    <result column="option_value" property="optionValue" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    option_id, option_name
+  </sql>
+  <sql id="Blob_Column_List" >
+    option_value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sys_options
+    where option_id = #{optionId,jdbcType=INTEGER}
+  </select>
+
+</mapper>
