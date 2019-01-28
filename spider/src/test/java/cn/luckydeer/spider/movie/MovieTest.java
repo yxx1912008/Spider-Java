@@ -22,8 +22,14 @@ public class MovieTest extends SpiderApplicationTests {
     @Resource
     private MacVodDao macVodDao;
 
+    /**
+     * 
+     * 注解：搜索排行前五的电影
+     * @throws Exception
+     * @author yuanxx @date 2019年1月28日
+     */
     @Test
-    public void testName() throws Exception {
+    public void selectTopFiveMovie() throws Exception {
 
         List<MacVodDo> info = macVodDao.selectTopFiveMovie(null);
 
