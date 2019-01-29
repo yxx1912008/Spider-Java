@@ -22,6 +22,7 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import cn.luckydeer.spider.common.cache.CaChePrefixConstants;
 import cn.luckydeer.spider.common.cache.CacheData;
@@ -45,6 +46,7 @@ import com.alibaba.fastjson.JSONObject;
  * @author yuanxx
  * @version $Id: BannerApi.java, v 0.1 2018年8月24日 下午4:58:43 yuanxx Exp $
  */
+@Service
 public class WebCrawlApi {
 
     private static final Logger           logger       = LoggerFactory.getLogger("MANAGER-LOG");
@@ -64,9 +66,17 @@ public class WebCrawlApi {
 
     private static String                 baseUrl;
 
+    /**
+     * 
+     * 注解：初始化时把主站地址放入内存
+     * @author yuanxx @date 2019年1月29日
+     */
     @PostConstruct
     private void init() {
         SysOptionsDo record = sysOptionsDao.selectByPrimaryKey(2);
+        if (null == record) {
+            return;
+        }
         baseUrl = record.getOptionValue();
     }
 
@@ -99,6 +109,11 @@ public class WebCrawlApi {
                 String imgUrl = element.select("img").attr("src");
                 model.setBannerImg(imgUrl.trim());
                 model.setGoodId(goodId);
+
+                if (StringUtils.isBlank(goodId)) {
+                    continue;
+
+                }
                 list.add(model);
             }
             updateCache(list, key);
@@ -276,32 +291,6 @@ public class WebCrawlApi {
             return null;
         } catch (IOException e) {
             logger.error("搜索商品失败", e);
-            return null;
-        }
-    }
-
-    /**
-     * 
-     * 注解：获取商品详情
-     * @param goodId
-     * @return
-     * @author yuanxx @date 2018年8月27日
-     */
-    @Deprecated
-    public static String getGoodDetail(String goodId) {
-
-        StringBuilder builder = new StringBuilder(BaseConstants.DTK_MAIN_URL);
-        builder.append("r=port/index&appkey=f0z3ez7qoh&v=2&id=");
-        builder.append(goodId);
-        String url = builder.toString();
-        Document doc;
-        try {
-            doc = Jsoup.connect(url).ignoreContentType(true)
-                .timeout(BaseConstants.DEFAULT_TIME_OUT).post();
-
-            return doc.text();
-        } catch (IOException e) {
-            logger.error("获取商品详细信息失败", e);
             return null;
         }
     }

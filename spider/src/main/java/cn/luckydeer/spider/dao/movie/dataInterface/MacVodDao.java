@@ -2,7 +2,7 @@ package cn.luckydeer.spider.dao.movie.dataInterface;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import cn.luckydeer.spider.dao.movie.dataObject.MacVodDo;
 
@@ -12,7 +12,7 @@ import cn.luckydeer.spider.dao.movie.dataObject.MacVodDo;
  * @author yuanxx
  * @version $Id: IMacVodDao.java, v 0.1 2018年10月12日 下午2:40:38 yuanxx Exp $
  */
-@Service
+@Repository
 public interface MacVodDao {
 
     MacVodDo selectByPrimaryKey(Integer vodId);
