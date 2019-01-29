@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>cn.luckydeer</groupId>
 	<artifactId>spider</artifactId>
-	<version>V0.0.1</version>
+	<version>V1.0.2</version>
 	<name>spider</name>
 	<description>独立数据采集系统</description>
 
