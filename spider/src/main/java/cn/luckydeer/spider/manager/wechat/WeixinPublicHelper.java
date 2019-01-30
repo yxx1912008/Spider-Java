@@ -11,14 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.DocumentHelper;
 import org.dom4j.Element;
 import org.jsoup.Connection.Response;
 import org.jsoup.Jsoup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
@@ -50,16 +50,16 @@ import com.alibaba.fastjson.JSON;
 @Service
 public class WeixinPublicHelper {
 
-    private static final Log  logger = LogFactory.getLog("LUCKYDEER-WEIXIN-LOG");
+    private static final Logger logger = LoggerFactory.getLogger("SYS-LOG");
 
     @Autowired
-    private CatManager        catManager;
+    private CatManager          catManager;
 
     @Autowired
-    private MovieManager      movieManager;
+    private MovieManager        movieManager;
 
     @Autowired
-    private DistributedCached distributedCached;
+    private DistributedCached   distributedCached;
 
     /**
      * 
