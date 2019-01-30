@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Configuration status="info" strict="true" name="LogConfig">
+	<!-- 配置日志文件存放根路径 -->
+	<Properties>
+		<Property name="filepath">E://windata/logs/spider</Property>
+	</Properties>
+
+	<Appenders>
+		<!-- [公共Appender] 默认 -->
+		<RollingFile name="DEFAULT-APPENDER" fileName="${filepath}/other-info.log"
+			filePattern="${filepath}/other-info.log.%d{yy-MM-dd}">
+			<!-- 日志格式 -->
+			<PatternLayout>
+				<Pattern>%d %-5p (%c:%L)- %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+				<!-- 定时任务回滚文件 -->
+				<!-- <CronTriggeringPolicy schedule="1 * * * * ?" evaluateOnStartup="true" 
+					/> -->
+			</Policies>
+		</RollingFile>
+
+		<Console name="DEFAULT-CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout>
+				<Pattern>[%d] - [%c] - [%highlight{%level}] - [%method] - [%t] -
+					%msg%n</Pattern>
+			</PatternLayout>
+		</Console>
+
+		<!-- [Memcached缓存] -->
+		<RollingFile name="MEMCACHED-APPENDER" fileName="${filepath}/memcached.log"
+			filePattern="${filepath}/memcached.log.%d{yy-MM-dd}">
+			<!-- 日志格式 -->
+			<PatternLayout>
+				<Pattern>%d %-5p (%c:%L)- %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+
+		<!-- [普通Manager日志] 默认 -->
+		<RollingFile name="MEMCACHED-APPENDER" fileName="${filepath}/manager.log"
+			filePattern="${filepath}/manager.log.%d{yy-MM-dd}">
+			<!-- 日志格式 -->
+			<PatternLayout>
+				<Pattern>%d %-5p (%c:%L)- %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!--过滤掉spring和mybatis的一些无用的DEBUG信息 -->
+		<logger name="org.springframework" level="INFO" />
+		<logger name="org.apache.tomcat" level="INFO" />
+		<logger name="org.mybatis" level="INFO" />
+		<!-- memcached缓存日志 -->
+		<logger name="MEMCACHED-LOG" level="INFO">
+			<AppenderRef ref="MEMCACHED-APPENDER" />
+		</logger>
+		<!-- 普通Manager日志 -->
+		<logger name="MANAGER-LOG" level="INFO">
+			<AppenderRef ref="MEMCACHED-APPENDER" />
+		</logger>
+		<Root level="INFO">
+			<AppenderRef ref="DEFAULT-APPENDER" />
+			<AppenderRef ref="DEFAULT-CONSOLE" />
+		</Root>
+	</Loggers>
+</Configuration>
