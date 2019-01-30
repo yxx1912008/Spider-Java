@@ -54,6 +54,19 @@
 				<SizeBasedTriggeringPolicy size="10 MB" />
 			</Policies>
 		</RollingFile>
+
+		<!-- [调度任务日志] 默认 -->
+		<RollingFile name="TASK-APPENDER" fileName="${filepath}/task.log"
+			filePattern="${filepath}/task.log.%d{yy-MM-dd}">
+			<!-- 日志格式 -->
+			<PatternLayout>
+				<Pattern>%d %-5p (%c:%L)- %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+		</RollingFile>
 	</Appenders>
 	<Loggers>
 		<!--过滤掉spring和mybatis的一些无用的DEBUG信息 -->
@@ -67,6 +80,10 @@
 		<!-- 普通Manager日志 -->
 		<logger name="MANAGER-LOG" level="INFO">
 			<AppenderRef ref="MEMCACHED-APPENDER" />
+		</logger>
+		<!-- 定时任务日志 -->
+		<logger name="TASK-LOG" level="INFO">
+			<AppenderRef ref="TASK-APPENDER" />
 		</logger>
 		<Root level="INFO">
 			<AppenderRef ref="DEFAULT-APPENDER" />
