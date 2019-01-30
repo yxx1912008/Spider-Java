@@ -1,6 +1,5 @@
 package cn.luckydeer.spider.manager.cat;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -265,25 +264,6 @@ public class CatManager {
         }
 
         return info;
-    }
-
-    /**
-     * 
-     * 注解：购物猫伪装功能 查询代理商区域费用
-     * @param areaName
-     * @return
-     * @author yuanxx @date 2018年9月21日
-     */
-    public String queryAgent(String areaName) {
-        String urlString = "http://member.icaomei.com/acaomei/qufx/search.do?areaName=" + areaName;
-        Response doc;
-        try {
-            doc = Jsoup.connect(urlString).execute();
-            return doc.body();
-        } catch (IOException e) {
-            logger.error("网络请求失败：请求地址{}", urlString, e);
-            return null;
-        }
     }
 
     /**
