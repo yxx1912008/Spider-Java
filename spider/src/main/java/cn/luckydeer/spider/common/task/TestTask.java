@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TestTask {
 
-    private final static Logger logger = LoggerFactory.getLogger("TASK");
+    private final static Logger logger = LoggerFactory.getLogger("TASK-LOG");
 
     /**
      * 
