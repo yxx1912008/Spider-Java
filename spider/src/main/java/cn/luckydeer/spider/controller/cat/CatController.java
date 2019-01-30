@@ -246,10 +246,14 @@ public class CatController {
      * @author yuanxx @date 2018年9月21日
      */
     @RequestMapping(value = "/queryAgent.do", produces = { "application/json;charset=UTF-8" })
-    public String queryAgent(String areaName, HttpServletRequest request,
-                             HttpServletResponse response) throws Exception {
-        String info = catManager.queryAgent(areaName);
-        return info;
+    public ResponseObj queryAgent(String areaName, HttpServletRequest request,
+                                  HttpServletResponse response) throws Exception {
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("areaName", "杭州市");
+        params.put("level", "C级");
+        params.put("price", "30万");
+        return new ResponseObj(params);
     }
 
     /**

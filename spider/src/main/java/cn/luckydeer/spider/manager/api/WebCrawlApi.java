@@ -321,24 +321,19 @@ public class WebCrawlApi {
                 final JSONObject jsonObject = JSON.parseObject(m.group(1).trim());
                 jsonObject.put("shopName", shopName);
                 jsonObject.put("shopIcon", shopIcon);
-                ExecutorServiceUtils.getExcutorPools().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        Elements imgListDiv = doc.getElementsByClass("imglist").get(0)
-                            .getElementsByTag("img");
-                        List<String> list = new ArrayList<>();
-                        String head = "https:";
-                        if (!imgListDiv.isEmpty()) {
-                            for (Element element2 : imgListDiv) {
-                                list.add(head + element2.attr("data-original"));
-                            }
-                            String key = CaChePrefixConstants.GOOD_IMG_CACHE
-                                         + jsonObject.getString("goodsid");
-                            distributedCached.put(CachedType.BUSINESS_CACHE, key, list);
-                        }
-                        logger.error("获取商品主图信息失败" + imgListDiv.text());
+
+                Elements imgListDiv = doc.getElementsByClass("imglist").get(0)
+                    .getElementsByTag("img");
+                List<String> list = new ArrayList<>();
+                String head = "https:";
+                if (!imgListDiv.isEmpty()) {
+                    for (Element element2 : imgListDiv) {
+                        list.add(head + element2.attr("data-original"));
                     }
-                });//异步 缓存 商品海报
+                    String key = CaChePrefixConstants.GOOD_IMG_CACHE
+                                 + jsonObject.getString("goodsid");
+                    distributedCached.put(CachedType.BUSINESS_CACHE, key, list);
+                }
                 return jsonObject.toJSONString();
             }
             return null;
