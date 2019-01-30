@@ -57,6 +57,7 @@ public class CatManager {
     @Autowired
     private SysOptionsDao                 sysOptionsDao;
 
+    @Autowired
     private WebCrawlApi                   webCrawlApi;
 
     /**
