@@ -23,7 +23,7 @@ public class EmailConfig implements Serializable {
     protected String          userName         = "3035817183@qq.com";
 
     //邮件认证服务密码
-    protected String          password         = "brrvqosyjihadggh";
+    protected String          password         = "tmzjyewaeukfdgfa";
 
     public String getHost() {
         return host;

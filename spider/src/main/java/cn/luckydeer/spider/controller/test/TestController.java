@@ -45,7 +45,7 @@ public class TestController {
     public ResponseObj testMail() {
         logger.info("开始测试邮件");
         EmailOrder emailOrder = new EmailOrder();
-        emailOrder.setContent("测试邮件");
+        emailOrder.setContent("测试邮件~~~~");
         emailOrder.setTitle("订阅号文章模板:" + DateUtilSelf.sdtShortFormat(new Date()));
         emailOrder.setReceives(BaseConstants.EMAIL_RECEIVES);
         AliyunEmail.send(emailOrder);
