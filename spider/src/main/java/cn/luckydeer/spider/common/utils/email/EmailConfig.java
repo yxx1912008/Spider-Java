@@ -14,16 +14,16 @@ public class EmailConfig implements Serializable {
     private static final long serialVersionUID = 5256784833290489204L;
 
     // 发送服务 : smtp.qq.com  smtp.exmail.qq.com
-    protected String          host             = "smtp.mxhichina.com";
+    protected String          host             = "smtp.qq.com";
 
     //发件人账号
-    protected String          sender           = "admin@luckydeer.cn";
+    protected String          sender           = "3035817183@qq.com";
 
     //服务器认证账号
-    protected String          userName         = "admin@luckydeer.cn";
+    protected String          userName         = "3035817183@qq.com";
 
     //邮件认证服务密码
-    protected String          password         = "Luckydeer2018";
+    protected String          password         = "brrvqosyjihadggh";
 
     public String getHost() {
         return host;
