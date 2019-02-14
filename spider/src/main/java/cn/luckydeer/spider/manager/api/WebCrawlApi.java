@@ -364,7 +364,7 @@ public class WebCrawlApi {
                 ExecutorServiceUtils.getExcutorPools().execute(new Runnable() {
                     @Override
                     public void run() {
-                        JSONObject jsonObject = JSONObject.parseObject(result);
+                       // JSONObject jsonObject = JSONObject.parseObject(result);
                         Elements imgListDiv = doc.getElementsByClass("imglist").get(0)
                             .getElementsByTag("img");
                         List<String> list = new ArrayList<>();
@@ -374,7 +374,7 @@ public class WebCrawlApi {
                                 list.add(head + element2.attr("data-original"));
                             }
                             String key = CaChePrefixConstants.GOOD_IMG_CACHE
-                                         + jsonObject.getString("goodsid");
+                                         + realGoodId;
                             distributedCached.put(CachedType.BUSINESS_CACHE, key, list);
                         }
                         logger.error("获取商品主图信息失败");
