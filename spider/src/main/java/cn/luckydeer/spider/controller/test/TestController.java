@@ -1,7 +1,10 @@
 package cn.luckydeer.spider.controller.test;
 
+import java.io.IOException;
 import java.util.Date;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +53,25 @@ public class TestController {
         emailOrder.setReceives(BaseConstants.EMAIL_RECEIVES);
         AliyunEmail.send(emailOrder);
         return new ResponseObj();
+    }
+
+    /**
+     * 
+     * 注解：获取树莓派服务器的外网IP
+     * @return
+     * @author yuanxx @date 2019年2月14日
+     */
+    @RequestMapping(value = "/getRealIp.do")
+    public String getRealIp() {
+        String url = "http://ifconfig.co/ip";
+        Document res;
+        try {
+            res = Jsoup.connect(url).ignoreContentType(true).get();
+            return res.text();
+        } catch (IOException e) {
+            logger.error("获取外网IP失败", e);
+            return "获取外网IP失败";
+        }
     }
 
 }
