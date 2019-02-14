@@ -19,6 +19,12 @@ import cn.luckydeer.spider.common.utils.email.AliyunEmail;
 import cn.luckydeer.spider.common.utils.email.EmailOrder;
 import cn.luckydeer.spider.common.view.response.ResponseObj;
 
+/**
+ * 
+ * 基础测试
+ * @author yuanxx
+ * @version $Id: TestController.java, v 0.1 2019年2月14日 下午5:50:28 yuanxx Exp $
+ */
 @RestController
 @RequestMapping(value = "/test")
 public class TestController {
