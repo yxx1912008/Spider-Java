@@ -13,7 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.luckydeer.spider.common.constant.WeixinPublicConfig;
 import cn.luckydeer.spider.common.utils.wechat.EncryptUtil;
 import cn.luckydeer.spider.common.utils.wechat.WeixinOffAccountUtil;
 import cn.luckydeer.spider.manager.movie.MovieManager;
@@ -48,8 +47,8 @@ public class WxPublicController {
     public void wxAuthen(HttpServletResponse response, HttpServletRequest request) {
 
         // GET模式，微信服务器验证
-        String token = WeixinPublicConfig.TOKEN;
-        //String token = WeixinOffAccountUtil.loadString(request, "token");
+        //String token = WeixinPublicConfig.TOKEN;
+        String token = WeixinOffAccountUtil.loadString(request, "token");
         String signature = WeixinOffAccountUtil.loadString(request, "signature");
         String timestamp = WeixinOffAccountUtil.loadString(request, "timestamp");
         String nonce = WeixinOffAccountUtil.loadString(request, "nonce");
