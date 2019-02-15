@@ -49,10 +49,12 @@ public class WxPublicController {
 
         // GET模式，微信服务器验证
         String token = WeixinPublicConfig.TOKEN;
+        //String token = WeixinOffAccountUtil.loadString(request, "token");
         String signature = WeixinOffAccountUtil.loadString(request, "signature");
         String timestamp = WeixinOffAccountUtil.loadString(request, "timestamp");
         String nonce = WeixinOffAccountUtil.loadString(request, "nonce");
         String echostr = WeixinOffAccountUtil.loadString(request, "echostr");
+
         if (StringUtils.isNotBlank(echostr) && StringUtils.isNotBlank(signature)) {
             //将获取到的参数放入数组
             String[] ArrTmp = { token, timestamp, nonce };
