@@ -56,7 +56,7 @@ public class MovieTask {
     public void getMovieApi() {
         logger.info("调用远程采集接口", DateUtilSelf.dtSimpleChineseFormat(new Date()));
         try {
-            Jsoup.connect("http://movie.gouwumao.top/api.php/timming/index.html?name=qiangqiang")
+            Jsoup.connect("http://luckydeer.51vip.biz/api.php/timming/index.html?name=qiangqiang")
                 .timeout(5000).get();
         } catch (IOException e) {
             logger.error("抓取电影数据连接超时", e);
