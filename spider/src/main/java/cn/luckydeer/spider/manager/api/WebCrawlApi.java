@@ -75,6 +75,7 @@ public class WebCrawlApi {
     private void init() {
         SysOptionsDo record = sysOptionsDao.selectByPrimaryKey(2);
         if (null == record) {
+            logger.error("获取系统配置失败，Key:2");
             return;
         }
         baseUrl = record.getOptionValue();
@@ -364,7 +365,7 @@ public class WebCrawlApi {
                 ExecutorServiceUtils.getExcutorPools().execute(new Runnable() {
                     @Override
                     public void run() {
-                       // JSONObject jsonObject = JSONObject.parseObject(result);
+                        // JSONObject jsonObject = JSONObject.parseObject(result);
                         Elements imgListDiv = doc.getElementsByClass("imglist").get(0)
                             .getElementsByTag("img");
                         List<String> list = new ArrayList<>();
@@ -373,8 +374,7 @@ public class WebCrawlApi {
                             for (Element element2 : imgListDiv) {
                                 list.add(head + element2.attr("data-original"));
                             }
-                            String key = CaChePrefixConstants.GOOD_IMG_CACHE
-                                         + realGoodId;
+                            String key = CaChePrefixConstants.GOOD_IMG_CACHE + realGoodId;
                             distributedCached.put(CachedType.BUSINESS_CACHE, key, list);
                         }
                         logger.error("获取商品主图信息失败");
@@ -443,7 +443,7 @@ public class WebCrawlApi {
             }
             return result;
         } catch (IOException e) {
-            logger.error("读取领券直播商品列表失败", e);
+            logger.error("读取领券直播商品列表失败,url=" + url, e);
             return null;
         }
     }
