@@ -28,9 +28,13 @@ public class CatTask {
     @Scheduled(cron = "0 0 0/2 * * ?")
     public void run() {
         logger.info("开始启动更新购物猫缓存的定时任务");
-        WebCrawlApi.getBanner();//更新海报
-        WebCrawlApi.getTicketLive("1");
-        WebCrawlApi.getCurrentQiang();
+        try {
+            WebCrawlApi.getBanner();//更新海报
+            WebCrawlApi.getTicketLive("1");
+            WebCrawlApi.getCurrentQiang();
+        } catch (Exception e) {
+            logger.error("定时更新缓存失败", e);
+        }
         logger.info("更新缓存任务结束");
     }
 

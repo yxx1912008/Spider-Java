@@ -37,8 +37,12 @@ public class MovieTask {
     @Scheduled(cron = "0 0 16 1/3 * ?")
     public void getAirtcleInfo() {
         logger.info("开始电影文章采集:{}", DateUtilSelf.dtSimpleChineseFormat(new Date()));
-        movieManager.getAirtcleInfo();
-        logger.info("采集结束");
+        try {
+            movieManager.getAirtcleInfo();
+            logger.info("采集结束");
+        } catch (Exception e) {
+            logger.error("采集失败", e);
+        }
     }
 
     /**
