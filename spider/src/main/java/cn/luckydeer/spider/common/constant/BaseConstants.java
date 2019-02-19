@@ -42,6 +42,6 @@ public interface BaseConstants {
     String[] EMAIL_RECEIVES     = { "y15507700062@icloud.com", "yxx19912008@icloud.com" };
 
     //小鹿影音地址
-    String   MOVIE_URL          = "http://luckydeer.51vip.biz";
+    String   MOVIE_URL          = "http://movie.gouwumao.top";
 
 }
