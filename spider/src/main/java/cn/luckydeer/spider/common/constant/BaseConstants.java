@@ -36,7 +36,7 @@ public interface BaseConstants {
     String   WX_BASE_API_URL    = "https://api.gouwumao.top/";
 
     //购物猫logo地址
-    String   BASE_LOGO_URL      = "http://api.gouwumao.top/static/cat/logo.png";
+    String   BASE_LOGO_URL      = "http://cat.gouwumao.top/static/cat/logo.png";
 
     //管理人员邮箱账号
     String[] EMAIL_RECEIVES     = { "y15507700062@icloud.com", "yxx19912008@icloud.com" };
