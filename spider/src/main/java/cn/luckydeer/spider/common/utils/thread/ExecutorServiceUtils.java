@@ -18,6 +18,7 @@ public class ExecutorServiceUtils {
     //     prod 4核cpu  
     //     如果是CPU（计算）密集型应用，则线程池大小设置为N+1
     //     如果是IO（网络）密集型应用，则线程池大小设置为2N+1
+    //     因为部署的生产服务器为 树莓派3B，Cpu为四核
     private final static int       DEFAULT_THREAD_NUM = 9;
 
     /**
@@ -39,18 +40,13 @@ public class ExecutorServiceUtils {
     public static ExecutorService getExcutorPools() {
 
         if (null == executorService) {
-
             synchronized (ExecutorServiceUtils.class) {
-
                 if (null == executorService) {
-
+                    /**  使用固定大小线程池  */
                     executorService = Executors.newFixedThreadPool(DEFAULT_THREAD_NUM);
-
                 }
             }
-
         }
-
         return executorService;
     }
 }
