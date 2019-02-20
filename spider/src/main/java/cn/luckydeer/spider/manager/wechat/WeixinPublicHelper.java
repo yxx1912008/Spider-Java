@@ -36,6 +36,7 @@ import cn.luckydeer.spider.common.utils.date.DateUtilSelf;
 import cn.luckydeer.spider.common.utils.email.AliyunEmail;
 import cn.luckydeer.spider.common.utils.email.EmailOrder;
 import cn.luckydeer.spider.common.utils.wechat.WeixinOffAccountUtil;
+import cn.luckydeer.spider.manager.api.WebCrawlApi;
 import cn.luckydeer.spider.manager.cat.CatManager;
 import cn.luckydeer.spider.manager.movie.MovieManager;
 
@@ -204,7 +205,8 @@ public class WeixinPublicHelper {
             picTextItem.setTitle("优惠券已找到,点击领取优惠券");
             picTextItem.setPicUrl(picUrl);
             picTextItem.setDescription("查看更多优惠商品");
-            picTextItem.setUrl(BaseConstants.IMPORT_BASE_URL + "r=index%2Fsearch&s_type=1&kw="
+            /** 返回连接的地址为外网可访问的购物猫地址  */
+            picTextItem.setUrl(WebCrawlApi.getBaseUrl() + "r=index%2Fsearch&s_type=1&kw="
                                + content);
             msgList.add(picTextItem);
             return WeixinOffAccountUtil.sendTextAndPic(fName, toName, msgList);
