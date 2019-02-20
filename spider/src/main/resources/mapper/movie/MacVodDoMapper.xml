@@ -27,14 +27,14 @@
 	</select>
 
 	<!-- 选取数据库最新添加的五条电影信息 -->
-	<select id="selectTopFiveMovie" resultMap="BaseResultMap">
+	<select id="selectTopFiveMovie" resultMap="BaseResultMap" parameterType="java.lang.String">
 		SELECT
 		<include refid="Base_Column_List" />
 		FROM mac_vod
 		where 1=1
-		<if test="keyWords != null">
+		<if test="keyWord != null">
 			and vod_name like
-			CONCAT('%',#{keyWords,jdbcType=VARCHAR},'%')
+			CONCAT('%',#{keyWord,jdbcType=VARCHAR},'%')
 		</if>
 		and type_id_1='1'
 		ORDER BY vod_time DESC
