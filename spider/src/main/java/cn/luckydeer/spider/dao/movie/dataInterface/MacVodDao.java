@@ -2,6 +2,7 @@ package cn.luckydeer.spider.dao.movie.dataInterface;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import cn.luckydeer.spider.dao.movie.dataObject.MacVodDo;
@@ -23,6 +24,6 @@ public interface MacVodDao {
      * @return
      * @author yuanxx @date 2018年10月12日
      */
-    List<MacVodDo> selectTopFiveMovie(String keyWord);
+    List<MacVodDo> selectTopFiveMovie(@Param("keyWord") String keyWord);
 
 }
