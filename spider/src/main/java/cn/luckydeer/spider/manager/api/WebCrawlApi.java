@@ -66,6 +66,11 @@ public class WebCrawlApi {
 
     private static String                 baseUrl;
 
+    /** 获取外网可访问的购物猫地址  */
+    public static String getBaseUrl() {
+        return baseUrl;
+    }
+
     /**
      * 
      * 注解：初始化时把主站地址放入内存
@@ -280,12 +285,15 @@ public class WebCrawlApi {
         builder.append(keyWords);
         try {
             String url = builder.toString();
-            Document doc = Jsoup.connect(url).timeout(BaseConstants.DEFAULT_TIME_OUT).get();
+            String doc = Jsoup.connect(url).timeout(BaseConstants.DEFAULT_TIME_OUT).get().html();
             //正则匹配规则
             String regex = "dtk_data=(.*?);";
             Pattern pattern = Pattern.compile(regex);
-            Matcher m = pattern.matcher(doc.html());
+            System.out.println(doc);
+            Matcher m = pattern.matcher(doc);
             if (m.find()) {
+                String getString = m.group(1).trim();
+                System.out.println(getString);
                 return m.group(1).trim();
             }
             logger.error("搜索结果转换失败");
