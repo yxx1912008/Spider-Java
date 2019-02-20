@@ -289,11 +289,10 @@ public class WebCrawlApi {
             //正则匹配规则
             String regex = "dtk_data=(.*?);";
             Pattern pattern = Pattern.compile(regex);
-            System.out.println(doc);
+            //System.out.println(doc);
             Matcher m = pattern.matcher(doc);
             if (m.find()) {
-                String getString = m.group(1).trim();
-                System.out.println(getString);
+                // System.out.println(getString);
                 return m.group(1).trim();
             }
             logger.error("搜索结果转换失败");
