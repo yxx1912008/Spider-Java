@@ -93,9 +93,8 @@ public class CatManager {
      * @author yuanxx @date 2018年8月27日
      */
     public String getNine(String page) {
-
         String result = WebCrawlApi.getNine(page);
-        System.out.println(result);
+        // System.out.println(result);
         if (StringUtils.isBlank(result)) {
             return "获取商品列表失败";
         }
