@@ -19,8 +19,8 @@ public interface BaseConstants {
     //关键站点根地址
     String   IMPORT_BASE_URL    = "http://192.168.2.127:8000/cat/index.php?";
 
-    //默认请求超时时间
-    int      DEFAULT_TIME_OUT   = 6000;
+    //默认请求超时时间 5s
+    int      DEFAULT_TIME_OUT   = 50000;
 
     //大淘客网站内部ID
     //TODO yxx 暂时没有用到
