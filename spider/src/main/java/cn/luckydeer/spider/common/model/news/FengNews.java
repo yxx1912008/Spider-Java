@@ -28,7 +28,7 @@ public class FengNews implements Serializable {
     /** 缩略图地址 */
     private String            pic_url;
 
-    /** 知情人士称，这是苹果代号为 Marzipan 的计划的最终目标。 */
+    /** 文章内容 */
     private String            content;
 
     /** 多少人看过 */
