@@ -22,7 +22,7 @@ public class FengNews implements Serializable {
     /** 发布时间戳 */
     private String            post_time;
 
-    /** 陈知心 */
+    /** 文章来源 */
     private String            from;
 
     /** 缩略图地址 */
